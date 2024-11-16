@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Blog Generator</title>
+    <link href = "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <style>
+        /* Spinner Animation */
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .spinner {
+            display: none; /* Hidden by default */
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-100 font-sans antialised">
+    <!---Navbar-->
+    <nav class = "bg-blue-600 p-4 text-white flex justify-between">
+        <div>
+            <h1 class = "text-3xl font-bold">AI Blog Generator</h1>
+        </div>
+        <div>
+            <a href = "#" class = "text-white hover:underline">Logout</a>
+        </div>
+    </nav>
+
+    <br>
+    <!--Main-->
+    <div class = "flex-grow container mx-auto mt-10 px-4 sm:px-0">
+        <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale 105 flex flex-col">
+            <!--Introduction-->
+            <div class = "text-center">
+                <h2 class = "text-2xl font-bold  mb-4">Welcome to AI blog Generator</h2>
+                <p clagg ="text-gray-700">
+                    Generate High quality blog article from youtube with Artificial Intelligence 
+                </p>
+            </div>
+
+            <br>
+            <!--Youtube Section-->
+            <div class = "text-center">
+                <h2 class="text-xl mb-4 font-semibold"> Enter Youtube Video link </h2>
+                <div class="flex space-x-4">
+                    <input id = "youtubeLink" type ="url" placeholder="Paste Youtube link" class="flex-grow p-2 border border-blue-400 rounded-l-md">
+                    <button id="generateBlogButton" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors">Generate</button>
+                </div>
+            </div>
+
+            <!--Section for loading circle-->
+
+            <div id="loadingSpinner" class="spinner mt-6"></div>
+
+            <!--Generated Blog Display Section -->
+            <section class="mt-10 flex-grow">
+                <h2 class="text-xl mb-4 font-semibold text-center">Generated Blog Article</h2>
+                <div id = "blogContent" class="mt-2 text-gray-700 space-y-4">
+                   
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer class="text-center p-4 text-black mt-6">
+        Powered by VisionAiHub
+    </footer>
+    <script>
+        const generateBlogButton = document.getElementById('generateBlogButton');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const blogContent = document.getElementById('blogContent');
+
+        generateBlogButton.addEventListener('click', () => {
+            // Show the loading spinner
+            loadingSpinner.style.display = 'block';
+            blogContent.innerHTML = ''; // Clear any existing blog content
+
+            // Simulate blog generation process
+            setTimeout(() => {
+                // Hide the loading spinner
+                loadingSpinner.style.display = 'none';
+
+                // Display the generated blog (replace with actual content in production)
+                blogContent.innerHTML = `
+                    <h3 class="font-bold text-lg">Sample Blog Title</h3>
+                    <p>This is a generated blog article based on the provided YouTube link. Replace this text with your actual blog content.</p>
+                `;
+            }, 3000); // Simulate a 3-second processing time
+        });
+    </script>
+</body>
+</html>
