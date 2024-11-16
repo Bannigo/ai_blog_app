@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - AI Blog Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="flex flex-col min-h-screen bg-gray-100 font-sans antialiased">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 p-4 text-white flex justify-between">
+        <div>
+            <h1 class="text-3xl font-bold">AI Blog Generator</h1>
+        </div>
+        <div>
+            <a href="login.html" class="text-white hover:underline">Login</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-grow container mx-auto mt-10 px-4 sm:px-0 flex justify-center items-center">
+        <div class="max-w-sm w-full bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4 text-center">Signup</h2>
+            <form id="signupForm" class="space-y-4">
+                <!-- Username -->
+                <div>
+                    <label for="signupUsername" class="block text-gray-700 font-medium mb-1">Username</label>
+                    <input id="signupUsername" type="text" placeholder="Choose a username" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500" required>
+                </div>
+                <!-- Email -->
+                <div>
+                    <label for="signupEmail" class="block text-gray-700 font-medium mb-1">Email</label>
+                    <input id="signupEmail" type="email" placeholder="Enter your email" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500" required>
+                </div>
+                <!-- Password -->
+                <div>
+                    <label for="signupPassword" class="block text-gray-700 font-medium mb-1">Password</label>
+                    <input id="signupPassword" type="password" placeholder="Create a password" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500" required>
+                </div>
+                <!-- Confirm Password -->
+                <div>
+                    <label for="signupConfirmPassword" class="block text-gray-700 font-medium mb-1">Confirm Password</label>
+                    <input id="signupConfirmPassword" type="password" placeholder="Confirm your password" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500" required>
+                </div>
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">Signup</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="text-center p-4 text-black mt-6">
+        Powered by VisionAiHub
+    </footer>
+
+    <script>
+        // Signup form submission logic
+        const signupForm = document.getElementById('signupForm');
+
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('signupUsername').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match. Please try again.");
+                return;
+            }
+
+            // Save the user data (for demonstration purposes only)
+            alert(`Account created successfully for ${username}!`);
+            window.location.href = "login.html"; // Redirect to login page
+        });
+    </script>
+</body>
+</html>
