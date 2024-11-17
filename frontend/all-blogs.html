@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Blog Posts - AI Blog Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="flex flex-col min-h-screen bg-gray-100 font-sans antialiased">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 p-4 text-white flex justify-between">
+        <div>
+            <h1 class="text-3xl font-bold">AI Blog Generator</h1>
+        </div>
+        <div class="flex space-x-4">
+            <a href="main.html" class="text-white hover:underline">Home</a>
+            <a href="login.html" class="text-white hover:underline">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-10 px-4 sm:px-0">
+        <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+            <section>
+                <h2 class="text-2xl font-bold mb-6 text-center">Your Saved Blog Posts</h2>
+
+                <!-- Blog Posts List -->
+                <div id="blogPostsContainer" class="space-y-4">
+                    <!-- Dynamic blog post cards will be inserted here -->
+                </div>
+    
+                <!-- No blogs message -->
+                <p id="noBlogsMessage" class="text-center text-gray-600 hidden">
+                    You haven't saved any blog posts yet.
+                </p>
+            </section>
+           
+        </div>
+    </div>
+
+    <footer class="text-center p-4 text-black mt-6">
+        Powered by VisionAiHub
+    </footer>
+
+    <script>
+        // Simulate fetching saved blog posts for the logged-in user
+        const savedBlogPosts = [
+            {
+                id: 1,
+                title: "How AI is Transforming Content Creation",
+                content: "Artificial Intelligence (AI) has revolutionized how content is created, allowing for high-quality, fast, and efficient workflows...",
+                date: "2024-11-16"
+            },
+            {
+                id: 2,
+                title: "The Future of Blogging with AI",
+                content: "AI-driven blogging tools enable creators to focus on ideas while automation handles the formatting, SEO, and even topic suggestions...",
+                date: "2024-11-15"
+            }
+        ];
+
+        const blogPostsContainer = document.getElementById('blogPostsContainer');
+        const noBlogsMessage = document.getElementById('noBlogsMessage');
+
+        function displayBlogPosts() {
+            if (savedBlogPosts.length === 0) {
+                noBlogsMessage.classList.remove('hidden');
+                return;
+            }
+
+            savedBlogPosts.forEach(post => {
+                const blogCard = document.createElement('div');
+                blogCard.className = 'bg-gray-100 p-4 rounded-lg shadow-md';
+
+                blogCard.innerHTML = `
+                    <h3 class="text-xl font-bold mb-2">${post.title}</h3>
+                    <p class="text-sm text-gray-600 mb-4">Saved on: ${post.date}</p>
+                    <p class="text-gray-700">${post.content.substring(0, 150)}...</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <button onclick="viewPost(${post.id})" class="text-blue-600 hover:underline">View</button>
+                        <button onclick="deletePost(${post.id})" class="text-red-600 hover:underline">Delete</button>
+                    </div>
+                `;
+
+                blogPostsContainer.appendChild(blogCard);
+            });
+        }
+
+        function viewPost(postId) {
+            const post = savedBlogPosts.find(p => p.id === postId);
+            if (post) {
+                alert(`Viewing Blog: ${post.title}\n\n${post.content}`);
+            }
+        }
+
+        function deletePost(postId) {
+            const postIndex = savedBlogPosts.findIndex(p => p.id === postId);
+            if (postIndex > -1) {
+                savedBlogPosts.splice(postIndex, 1);
+                alert('Blog post deleted successfully.');
+                blogPostsContainer.innerHTML = ''; // Clear container
+                displayBlogPosts(); // Re-render posts
+            }
+        }
+
+        // Initialize page
+        displayBlogPosts();
+    </script>
+</body>
+</html>
