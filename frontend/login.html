@@ -13,7 +13,7 @@
             <h1 class="text-3xl font-bold">AI Blog Generator</h1>
         </div>
         <div>
-            <a href="signup.html" class="text-white hover:underline">Signup</a>
+            <a href="signup" class="text-white hover:underline">Signup</a>
         </div>
     </nav>
 
@@ -21,16 +21,24 @@
     <div class="flex-grow container mx-auto mt-10 px-4 sm:px-0 flex justify-center items-center">
         <div class="max-w-sm w-full bg-white p-6 rounded-lg shadow-md">
             <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>
-            <form id="loginForm" class="space-y-4">
+            <form id="loginForm" class="space-y-4" action="" method="POST">
+                {% csrf_token %}
+                {% if error_message %}
+                    <div align="center" style="color: red;">
+                        <h2>
+                            {{error_message}}
+                        </h2>
+                    </div>
+                {% endif %}
                 <!-- Username -->
                 <div>
                     <label for="username" class="block text-gray-700 font-medium mb-1">Username</label>
-                    <input id="username" type="text" placeholder="Enter your username" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500" required>
+                    <input id="username"  name = "username" type="text" placeholder="Enter your username" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500" required>
                 </div>
                 <!-- Password -->
                 <div>
                     <label for="password" class="block text-gray-700 font-medium mb-1">Password</label>
-                    <input id="password" type="password" placeholder="Enter your password" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500" required>
+                    <input id="password" name = "userPassword" type="password" placeholder="Enter your password" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500" required>
                 </div>
                 <!-- Submit Button -->
                 <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">Login</button>
@@ -43,29 +51,5 @@
         Powered by VisionAiHub
     </footer>
 
-    <script>
-        // Login form submission logic
-        const loginForm = document.getElementById('loginForm');
-        const errorMessage = document.getElementById('errorMessage');
-
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            // Hardcoded username and password for demonstration
-            const validUsername = "admin";
-            const validPassword = "password";
-
-            if (username === validUsername && password === validPassword) {
-                // Redirect to the main page if credentials are correct
-                window.location.href = "main.html"; // Replace with the actual path to your main page
-            } else {
-                // Show error message if credentials are incorrect
-                errorMessage.classList.remove('hidden');
-            }
-        });
-    </script>
 </body>
 </html>

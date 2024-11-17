@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'yashpostgre',  # Replace with your database name
         'USER': 'yash',       # Replace with your RDS username
         'PASSWORD': 'Yash2806',   # Replace with your RDS password
-        'HOST': 'db-postgre.cnw8ks6a23zl.eu-north-1.rds.amazonaws.com',   # Replace with your RDS endpoint
+        'HOST': 'database-1.cnw8ks6a23zl.eu-north-1.rds.amazonaws.com',   # Replace with your RDS endpoint
         'PORT': '5432',                # Default PostgreSQL port
     }
 }
