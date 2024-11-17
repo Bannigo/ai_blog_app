@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'yashpostgre',  # Replace with your database name
+        'USER': 'yash',       # Replace with your RDS username
+        'PASSWORD': 'Yash2806',   # Replace with your RDS password
+        'HOST': 'db-postgre.cnw8ks6a23zl.eu-north-1.rds.amazonaws.com',   # Replace with your RDS endpoint
+        'PORT': '5432',                # Default PostgreSQL port
     }
 }
 
