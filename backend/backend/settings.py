@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -70,18 +70,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'yashpostgre',  # Replace with your database name
-        'USER': 'yash',       # Replace with your RDS username
-        'PASSWORD': 'Yash2806',   # Replace with your RDS password
-        'HOST': 'database-1.cnw8ks6a23zl.eu-north-1.rds.amazonaws.com',   # Replace with your RDS endpoint
-        'PORT': '5432',                # Default PostgreSQL port
+        'NAME': config('NAME'),  # Replace with your database name
+        'USER': config('AWS_USER'),       # Replace with your RDS username
+        'PASSWORD': config('AWS_PASSWORD'),   # Replace with your RDS password
+        'HOST': config('HOST'),  
+        'PORT': config('PORT'),    # Default PostgreSQL port
     }
 }
 
@@ -127,4 +125,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = 'login'
+

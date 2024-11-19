@@ -2,3 +2,6 @@ backend/backend/__pycache__
 backend/blog_generator/__pycache__
 backend/db.sqlite3
 .DS_Store
+.env
+.vscode
+media
