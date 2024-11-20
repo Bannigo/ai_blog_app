@@ -12,7 +12,7 @@ import assemblyai as aai
 from decouple import config
 import os
 import yt_dlp
-
+from .models import BlogPost
 import openai
 aai.settings.api_key = config('AssemblyAPIKey')
 transcriber = aai.Transcriber()
@@ -46,11 +46,19 @@ def generate_blog(request):
         if not blog_content:
             return JsonResponse({'error':'Failed to generate transcript'}, status=400)
         # save blog article to data base
-        
+        new_blog_article = BlogPost.objects.create(user= request.user,
+                                                   youtube_title= video_title,
+                                                   youtube_link=yt_link,
+                                                   generated_content = blog_content)
+        new_blog_article.save()
         # return blog article as response
         return JsonResponse({'content' : blog_content})
     else:
         return JsonResponse({'error':'Invalid request method'}, status=405)
+
+def blog_list(request):
+    blog_articles = BlogPost.objects.filter(user=request.user)
+    return render(request, "all-blogs.html", {'blog_articles': blog_articles})
 
 def user_login(request):
     if request.method == 'POST':
